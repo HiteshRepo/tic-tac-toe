@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block content %}
+{% if user.is_authenticated %}
+<form action="{% url 'change' %}" method="POST">
+    {% csrf_token %}
+    <label for="loc">Enter location num : </label>
+    <input id="loc" name="loc" type="text" value="{{ loc }}">
+    <input type="submit" value="OK">
+</form>
+<p>{{msg}}</p>
+{% for ele in board %}
+{{ele}}
+<br>
+{% endfor %}
+
+<a href="{% url 'reset' %}"> Reset </a>
+
+{% else %}
+<p>Please signup/login to play.</p>
+{% endif %}
+
+{% endblock %}
